@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
 
 class ContactForm extends Component {
@@ -10,8 +10,9 @@ class ContactForm extends Component {
   };
 
   // Генерація ідентифікаторів для name та id
-  nameInputId = nanoid();
-  numberInputId = nanoid();
+  // Потрібно зв'язувати через htmlFor та id тільки тоді коли input знаходиться за межами label
+  // nameInputId = nanoid();
+  // numberInputId = nanoid();
 
   // Публічна властивіть класу для input
   handleChange = e => {
@@ -54,7 +55,7 @@ class ContactForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className={css.form}>
-        <label htmlFor={this.nameInputId} className={css.label}>
+        <label className={css.label}>
           Name
           <input
             type="text"
@@ -64,11 +65,10 @@ class ContactForm extends Component {
             required
             value={this.state.name}
             onChange={this.handleChange}
-            id={this.nameInputId}
             className={css.input}
           />
         </label>
-        <label htmlFor={this.numberInputId} className={css.label}>
+        <label className={css.label}>
           Number
           <input
             type="tel"
@@ -78,7 +78,6 @@ class ContactForm extends Component {
             required
             value={this.state.number}
             onChange={this.handleChange}
-            id={this.numberInputId}
             className={css.input}
           />
         </label>
